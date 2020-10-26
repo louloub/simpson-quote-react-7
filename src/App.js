@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import Displaysimpson from './components/DisplaySimpson';
 
 const sampleSimpson = [
   {
@@ -20,30 +21,61 @@ class App extends React.Component {
     };
     
     this.getSimpson = this.getSimpson.bind(this);
-    // This ensures that inside getEmployee, this actually refers to the component instance.
   }
 
   getSimpson() {
-    // Send the request
     axios.get('https://simpsons-quotes-api.herokuapp.com/quotes?count=num')
-      // Extract the DATA from the received response
-      .then(response => response.data)
-      // Use this data to update the state
-      .then(data => {
-        this.setState({
-          simpson: data.results[0],
-        });
-    });
+    // let a = axios.get('https://simpsons-quotes-api.herokuapp.com/quotes?count=num')
+    // console.log("a ==> " +a[0])
+    // console.log("a 2 ==> " +a)
+    // console.log("a 3 ==> " +a[0])
+    // console.log("a 4 ==> " +a[0].data)
+    .then(response => response.data)
+    .then(data => {
+      console.log("data ==> " +data[0])
+      console.log("data character ==> " +data[0].character)
+      this.setState({
+        simpson : data[0]
+      })
+    })
   }
 
   render() {
     return (
       <div className="App">
-        <DisplayEmployee employee={this.state.employee} />
-        <button type="button" onClick={this.getEmployee}>Get employee</button>
+        {console.log("state simpson ==> " +this.state.simpson)}
+        <Displaysimpson simpson={this.state.simpson} />
+        <button type="button" onClick={this.getSimpson}>Get simpson</button>
       </div>
     );
   }
 }
 
 export default App;
+
+/* 
+
+axios.get('https://simpsons-quotes-api.herokuapp.com/quotes?count=num')
+    .then(response => response.data)
+    .then(data => {
+      this.setState({
+        simpson : data.result
+      })
+    })
+
+---
+
+getSimpson() {
+    // Send the request
+    axios.get('https://simpsons-quotes-api.herokuapp.com/quotes?count=num')
+      // Extract the DATA from the received response
+      .then(response => response.data)
+      // Use this data to update the state
+      console.log(response)
+      .then(data => {
+        this.setState({
+          simpson: data.results[0],
+        });
+    });
+  }
+*/
