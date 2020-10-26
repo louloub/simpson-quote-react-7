@@ -3,7 +3,7 @@ import React from 'react';
 function DisplaySimpson({ simpson }) {
   return (
     <div className="DisplaySimpson">
-        {console.log("simpson quote ==> "+simpson.character)}
+        {console.log("simpson quote ==> " +simpson.quote)}
       <img
         src={simpson.image}
         alt={simpson.image}

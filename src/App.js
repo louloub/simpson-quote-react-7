@@ -32,10 +32,10 @@ class App extends React.Component {
     // console.log("a 4 ==> " +a[0].data)
     .then(response => response.data)
     .then(data => {
-      console.log("data ==> " +data[0])
-      console.log("data character ==> " +data[0].character)
+      console.log("data ==> " +data)
+      console.log("data character ==> " +data.character)
       this.setState({
-        simpson : data[0]
+        simpson : data
       })
     })
   }
@@ -43,8 +43,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {console.log("state simpson ==> " +this.state.simpson)}
-        <Displaysimpson simpson={this.state.simpson} />
+        {console.log("state simpson ==> " +this.state.simpson[0])}
+        <Displaysimpson simpson={this.state.simpson[0]} />
         <button type="button" onClick={this.getSimpson}>Get simpson</button>
       </div>
     );
